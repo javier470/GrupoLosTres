@@ -7,16 +7,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[90%] mb-7">
             <div class="flex gap-2 items-center">
-                <img src="{{ Vite::asset('resources/img/Group8.png') }}" alt="group8" class="w-8 h-8">
+                <img src="{{ asset('img/Group8.png') }}" alt="group8" class="w-8 h-8">
                 <p class="text-[#083a71] text-sm md:text-base">Consulte el detalle de su Orden de Trabajo</p>
             </div>            
             <div class="flex gap-2 items-center">
-                <img src="{{ Vite::asset('resources/img/Group6.png') }}" alt="group6" class="w-8 h-8">
+                <img src="{{ asset('img/Group6.png') }}" alt="group6" class="w-8 h-8">
                 <p class="text-[#083a71] text-sm md:text-base">Pague en línea de forma segura</p>
             </div>            
         </div>
         <div>
-            <img src="{{ Vite::asset('resources/img/Group14.png') }}" alt="group14" class="w-200">
+            <img src="{{ asset('img/Group14.png') }}" alt="group14" class="w-200">
         </div>
     </section>
     <section class="flex justify-center items-center w-full lg:w-1/2">

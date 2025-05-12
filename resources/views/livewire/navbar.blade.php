@@ -1,7 +1,7 @@
 <header class="w-full pt-6 pb-6 custom-shadow-nav">
     <nav class="flex flex-col md:flex-row justify-between items-center px-6 md:px-[100px] gap-4 md:gap-0">
         <section class="w-full md:w-auto flex justify-center md:justify-start">
-            <img wire:click="redirectHome" src="{{ Vite::asset('resources/img/logo.webp') }}" alt="Logo" class="w-28 md:w-32 cursor-pointer">
+            <img wire:click="redirectHome" src="{{ asset('img/logo.webp') }}" alt="Logo" class="w-28 md:w-32 cursor-pointer">
         </section>
 
         <section class="w-full md:w-auto flex flex-col md:flex-row items-center gap-4">
@@ -15,7 +15,7 @@
             @endif
 
             <div class="flex gap-3 items-center">
-                <img src="{{ Vite::asset('resources/img/headphones.png') }}" alt="headphones" class="w-6 md:w-7">
+                <img src="{{ asset('img/headphones.png') }}" alt="headphones" class="w-6 md:w-7">
                 <div class="flex gap-1 text-[#5f738c] text-sm md:text-base">
                     <p class="font-bold">PBX:</p>
                     <p>2301-0000</p>

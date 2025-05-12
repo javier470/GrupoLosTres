@@ -30,7 +30,7 @@
                 <div class="flex justify-between items-start relative z-20">
                     @foreach($pasos as $index => $paso)
                         <div class="flex flex-col items-center w-1/5 text-center">
-                            <img src="{{ Vite::asset('resources/img/' . $paso['icono']) }}"
+                            <img src="{{ asset('img/' . $paso['icono']) }}"
                                 class="w-25 h-25 mb-10 {{ $index <= $pasoActual ? 'opacity-100' : 'contrast-2 opacity-40' }}">
 
                             <div class="w-4 h-4 rounded-full border-2 

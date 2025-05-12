@@ -3,7 +3,7 @@
         <p>©2025. Grupo Los Tres Online. Reservados Todos los Derechos.</p>
     </section>
     <section>
-        <img src="{{ Vite::asset('resources/img/frame2.png') }}" alt="Logo" class="w-40 md:w-52">
+        <img src="{{ asset('img/frame2.png') }}" alt="Logo" class="w-40 md:w-52">
     </section>
     <section class="text-center md:text-right">
         <div class="flex justify-center md:justify-end">
