@@ -10,6 +10,7 @@
         </div>
     </section>
 
+    @if($vista === 'actuales')
     <section class="mt-20">
         <div class="flex justify-around mb-20">
             <div class="flex justify-center font-bold text-lg">
@@ -138,6 +139,103 @@
             }
         </script>
     </section>
+    @endif
+
+    @if($vista === 'historial')
+    <section class="mt-20 mb-30 mx-50 lg:mx-50 min-h-[calc(75vh-200px)]"> {{-- Ajusta 200px según el alto de tu header+footer --}}
+        @foreach($listaProcesos as $or)
+        <div class="bg-[#f8f9fb] border-[#e1e8ef] border-1 rounded-sm overflow-hidden">
+            <button onclick="toggleAccordionHistory({{ $loop->index }})" class="w-full flex justify-between items-center text-slate-800 cursor-pointer py-8 ps-5 pe-5">
+                <div class="flex justify-between items-center w-full me-10 h-16">
+                    <div class="flex items-center font-bold text-xl">
+                        <p class="text-[#1e89c5]">Orden:&nbsp;</p>
+                        <p class="text-[#294666]">{{ $or['orden'] }}</p>
+                    </div>
+                    <div class="rounded-3xl bg-[#78c0e8] py-2 px-4 border border-transparent text-xs text-white transition-all">
+                        {{ $or['estado'] }}
+                    </div>
+                </div>
+                <span id="iconHistory-{{ $loop->index }}" class="text-slate-800 transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                        <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </button>
+            <div id="contentHistory-{{ $loop->index }}" class="bg-white max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="grid border-[#d5d5d5] border-1 p-7 gap-6 lg:grid-cols-[0.8fr_1.5fr_1fr] md:grid-cols-1">
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="flex-1">
+                            <p class="font-bold text-[#1d89c4] mb-5">Datos de la Orden</p>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">No. de Orden:&nbsp;</p>
+                                <p>{{ $orden }}</p>
+                            </div>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">No. de Placa:&nbsp;</p>
+                                <p>{{ $placa }}</p>
+                            </div>
+                        </div>
+                        <div class="inline-block h-[250px] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10 ms-3 me-3"></div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-[#1d89c4] mb-5">Datos del Cliente</p>
+                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">Nombre:</p><p>{{ $nombreCliente }}</p></div>
+                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">NIT:</p><p>{{ $nitCliente }}</p></div>
+                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">Dirección:</p><p>{{ $direccionCliente }}</p></div>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row">
+                        <div class="inline-block h-[250px] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10 ms-3 me-10"></div>
+                        <div class="flex-1">
+                            <p class="font-bold text-[#1d89c4] mb-5">Datos del Vehículo</p>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">Tipo:&nbsp;</p>
+                                <p>{{ $tipoVehiculo }}</p>
+                            </div>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">Línea:&nbsp;</p>
+                                <p>{{ $lineaVehiculo }}</p>
+                            </div>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">Marca:&nbsp;</p>
+                                <p>{{ $marcaVehiculo }}</p>
+                            </div>
+                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                                <p class="font-bold text-[#575757]">Color:&nbsp;</p>
+                                <p>{{ $colorVehiculo }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+
+        <script>
+            function toggleAccordionHistory(index) {
+                const content = document.getElementById(`contentHistory-${index}`);
+                const icon = document.getElementById(`iconHistory-${index}`);
+
+                const upSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>`;
+
+                const downSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                </svg>`;
+
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0';
+                    icon.innerHTML = upSVG;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.innerHTML = downSVG;
+                }
+            }
+        </script>
+    </section>
+    @endif
 
 
 </section>

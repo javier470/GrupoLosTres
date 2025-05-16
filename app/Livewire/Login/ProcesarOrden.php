@@ -9,7 +9,7 @@ class ProcesarOrden extends Component
     public $pasoActual = 1; //maximo 4 minimo 1
 
     public $orden, $placa;
-    public $vista = "actuales";
+    public $vista = "historial";
     public $estado = "En Proceso"; 
     public $nombreCliente = "GRUPO LOS TRES GUATEMALA, S.A";
     public $nitCliente = "4651658-1";
@@ -18,6 +18,14 @@ class ProcesarOrden extends Component
     public $lineaVehiculo = "XC60 T5";
     public $marcaVehiculo = "VOLVO";
     public $colorVehiculo = "GRIS";
+
+
+    //Historial
+    public $listaProcesos = [
+        ['orden' => 'JZ90000104', 'placa' => 'P135FPS', 'nombre' => 'GRUPO LOS TRES GUATEMALA, S.A', 'NIT' => '4651658-1', 'direccion' => 'BOULEVARD LIBERACIÒN 1-87 ZONA 9', 'tipo' => 'Camioneta', 'linea' => 'XC6 T5', 'marca' => 'VOLVO', 'color' => 'GRIS', 'estado' => 'Entregado'],
+        ['orden' => 'JZ90000105', 'placa' => 'P135FPS', 'nombre' => 'GRUPO LOS TRES GUATEMALA, S.A', 'NIT' => '4651658-1', 'direccion' => 'BOULEVARD LIBERACIÒN 1-87 ZONA 9', 'tipo' => 'Camioneta', 'linea' => 'XC6 T5', 'marca' => 'VOLVO', 'color' => 'GRIS', 'estado' => 'Entregado'],
+        ['orden' => 'JZ90000106', 'placa' => 'P135FPS', 'nombre' => 'GRUPO LOS TRES GUATEMALA, S.A', 'NIT' => '4651658-1', 'direccion' => 'BOULEVARD LIBERACIÒN 1-87 ZONA 9', 'tipo' => 'Camioneta', 'linea' => 'XC6 T5', 'marca' => 'VOLVO', 'color' => 'GRIS', 'estado' => 'Entregado'],
+    ];
 
     public $pasos = [
         ['titulo' => 'En Asignación', 'icono' => 'Group 9.png'],
