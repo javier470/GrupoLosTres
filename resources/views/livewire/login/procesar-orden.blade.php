@@ -281,7 +281,7 @@
                                     <section>
                                         <div class="bg-[#f8f9fb] border-[#e1e8ef] border-1">
                                             <div class="w-full flex justify-between items-center text-slate-800 pt-4 pb-4 ps-5 pe-5">
-                                                <p class="text-semibold">Total a Pagar</p>
+                                                <p class="font-semibold">Total a Pagar</p>
                                                 <p class="font-bold">Q.{{ $total }}</p>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@
                             </div>
                         </div>
                         <div class="mt-5 mx-2 sm:mt-4 sm:flex sm:flex-row-reverse">
-                            <button type="button" class="cursor-pointer inline-flex w-full justify-center rounded-md bg-[#1d89c4] px-3 py-3 text-sm font-semibold text-white sm:ml-3 sm:w-auto">
+                            <button type="button" wire:click='payment' class="cursor-pointer inline-flex w-full justify-center rounded-md bg-[#1d89c4] px-3 py-3 text-sm font-semibold text-white sm:ml-3 sm:w-auto">
                                 Pagar Orden ->
                             </button>
                             <button type="button" wire:click="closeModal" class="cursor-pointer mt-3 inline-flex w-full justify-center rounded-md bg-white px-5 py-3 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset sm:mt-0 sm:w-auto">
@@ -305,6 +305,77 @@
     </section>
     @endif
 
+    @if($showModalError)
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-lg bg-white px-10 py-10 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm">
+                <div>
+                    <div class="mx-auto flex size-12 items-center justify-center">
+                        <img src="{{ asset('img/iconError.svg') }}" alt="group8" class="w-30 h-30">
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-xl font-bold text-[#4c4c4c]" id="modal-title">Pago Fallido</h3>
+                        <div class="mt-2">
+                        <p class="text-sm text-[#62748e]">Ocurrió un error. Por favor intente de nuevo o consulte con la entidad emisora de su tarjeta. También puede solicitar asistencia llamando al PBX: 2301-0000.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                    <button type="button" wire:click='closeModalError'
+                        class="inline-flex w-full justify-center rounded-md bg-[#1d89c4] cursor-pointer px-3 py-3 text-sm font-semibold text-white ">
+                        Intentar de nuevo
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    @if($showModalSucess)
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-lg bg-white px-12 py-12 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm">
+                <div>
+                    <div class="mx-auto flex size-12 items-center justify-center">
+                        <img src="{{ asset('img/iconSuccess.svg') }}" alt="group8" class="w-30 h-30">
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-xl font-bold text-[#4c4c4c]" id="modal-title">Pago Exitoso</h3>
+                        <div class="mt-2">
+                        <p class="text-sm text-[#62748e]">Gracias por utilizar nuestro servicio. Recomendamos imprimir el detalle de la orden utilizando el enlace a continuación</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 mt-5 sm:mt-6">
+                    <button type="button" wire:click='redirectDatos'
+                        class="inline-flex w-full justify-center rounded-md bg-[#1d89c4] cursor-pointer px-3 py-3 text-sm font-semibold text-white ">
+                        Imprimir
+                        <svg viewBox="0 0 24 24" class="w-8 h-5" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="m8 12 4 4 4-4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M12 16V4M19 17v.6c0 1.33-1.07 2.4-2.4 2.4H7.4C6.07 20 5 18.93 5 17.6V17" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    <button type="button" wire:click='closeModalSucess'
+                        class="inline-flex w-full justify-center rounded-md border border-[#e2e8ef] cursor-pointer px-3 py-3 text-sm font-semibold text-black ">
+                        Salir
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    @endif
     @if($vista === 'historial')
     <section class="mt-20 mb-30 mx-50 lg:mx-50 min-h-[calc(75vh-200px)]"> {{-- Ajusta 200px según el alto de tu header+footer --}}
         @foreach($listaProcesos as $or)

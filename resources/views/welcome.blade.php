@@ -23,5 +23,6 @@
         @livewire('login.consulta-orden')
 
         @livewire('footer')
+
     </body>
 </html>

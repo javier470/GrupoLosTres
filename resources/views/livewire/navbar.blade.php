@@ -5,7 +5,7 @@
         </section>
 
         <section class="w-full md:w-auto flex flex-col md:flex-row items-center gap-4">
-            @if(!request()->routeIs('procesar'))
+            @if(!request()->routeIs('procesar') && !request()->routeIs('datos'))
             <div class="w-full md:w-auto flex justify-center md:justify-start">
                 <button wire:click="redirectToPage"
                     class="w-full md:w-auto border border-[#1ea5dc] text-[#1ea5dc] rounded-xl py-1 px-6 font-medium cursor-pointer transition duration-500 ease-in-out hover:bg-[#1ea5dc] hover:text-white">
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            @if(request()->routeIs('procesar'))
+            @if(request()->routeIs('procesar') || request()->routeIs('datos'))
             <div class="w-full md:w-auto flex justify-center md:justify-start">
                 <button wire:click="redirectCleanHome"
                     class="w-full md:w-auto border border-[#1ea5dc] text-[#1ea5dc] rounded-xl py-1 px-6 font-medium cursor-pointer transition duration-500 ease-in-out hover:bg-[#1ea5dc] hover:text-white">

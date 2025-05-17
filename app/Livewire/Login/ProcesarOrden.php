@@ -38,6 +38,8 @@ class ProcesarOrden extends Component
 
     //modal
     public bool $showModal = false;
+    public bool $showModalSucess = false;
+    public bool $showModalError = false;
     public $method = "credito";
     public $total = 4520.99;
 
@@ -49,6 +51,16 @@ class ProcesarOrden extends Component
     public function openModal()
     {
         $this->showModal = true;
+    }
+
+    public function closeModalError()
+    {
+        $this->showModalError = false;
+    }
+
+    public function closeModalSucess()
+    {
+        $this->showModalSucess = false;
     }
 
     public function closeModal()
@@ -68,6 +80,17 @@ class ProcesarOrden extends Component
 
     public function changeVista($vista = 'actuales'){
         $this->vista = $vista;
+    }
+
+    public function payment(){
+        $this->closeModal();
+
+        $this->showModalSucess = true;
+        // $this->showModalError = true;
+    }
+
+    public function redirectDatos(){
+        return redirect()->to('/datos-orden');
     }
 
     public function render()
