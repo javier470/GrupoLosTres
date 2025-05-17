@@ -6,10 +6,10 @@ use Livewire\Component;
 
 class ProcesarOrden extends Component
 {
-    public $pasoActual = 1; //maximo 4 minimo 1
+    public $pasoActual = 4; //maximo 4 minimo 1
 
     public $orden, $placa;
-    public $vista = "historial";
+    public $vista = "actuales";
     public $estado = "En Proceso"; 
     public $nombreCliente = "GRUPO LOS TRES GUATEMALA, S.A";
     public $nitCliente = "4651658-1";
@@ -27,6 +27,7 @@ class ProcesarOrden extends Component
         ['orden' => 'JZ90000106', 'placa' => 'P135FPS', 'nombre' => 'GRUPO LOS TRES GUATEMALA, S.A', 'NIT' => '4651658-1', 'direccion' => 'BOULEVARD LIBERACIÒN 1-87 ZONA 9', 'tipo' => 'Camioneta', 'linea' => 'XC6 T5', 'marca' => 'VOLVO', 'color' => 'GRIS', 'estado' => 'Entregado'],
     ];
 
+    //pasos
     public $pasos = [
         ['titulo' => 'En Asignación', 'icono' => 'Group 9.png'],
         ['titulo' => 'Presupuesto y Autorización', 'icono' => 'Group 10.png'],
@@ -35,6 +36,25 @@ class ProcesarOrden extends Component
         ['titulo' => 'Finalizado, listo para Entrega', 'icono' => 'Group 13.png'],
     ];
 
+    //modal
+    public bool $showModal = false;
+    public $method = "credito";
+    public $total = 4520.99;
+
+    public function selectMethod($value)
+    {
+        $this->method = $value;
+    }
+
+    public function openModal()
+    {
+        $this->showModal = true;
+    }
+
+    public function closeModal()
+    {
+        $this->showModal = false;
+    }
 
     public function setPaso($paso)
     {
