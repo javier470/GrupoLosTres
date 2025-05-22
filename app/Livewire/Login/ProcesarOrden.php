@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ProcesarOrden extends Component
 {
-    public $pasoActual = 4; //maximo 4 minimo 1
+    public $pasoActual = 0; //maximo 4 minimo 0
 
     public $orden, $placa;
     public $vista = "actuales";
@@ -43,6 +43,7 @@ class ProcesarOrden extends Component
     public $method = "credito";
     public $total = 4520.99;
 
+
     public function selectMethod($value)
     {
         $this->method = $value;
@@ -50,7 +51,15 @@ class ProcesarOrden extends Component
 
     public function openModal()
     {
-        $this->showModal = true;
+        if($this->pasoActual >= 0 && $this->pasoActual < 5 ){
+            if($this->pasoActual == 4){
+                $this->showModal = true;
+            }else{
+                $this->pasoActual += 1;
+            }
+        }else{
+            $this->pasoActual = 1;
+        }
     }
 
     public function closeModalError()

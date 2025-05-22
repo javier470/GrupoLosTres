@@ -48,7 +48,9 @@
 
 
             <div class="flex justify-center mt-7">
-                <button wire:click="openModal" class="w-50 bg-[#1987c3] mt-7 text-sky-50 rounded-lg pt-2 pb-2 cursor-pointer {{ $pasoActual != 4 ? 'btnProcedePagoDisabled' : '' }}" @if ($pasoActual != 4) disabled @endif>Proceder al pago</button>
+                <button wire:click="openModal" class="w-50 bg-[#1987c3] mt-7 text-sky-50 rounded-lg pt-2 pb-2 cursor-pointer ">
+                    {{  $pasoActual != 4 ? 'Siguiente' : 'Proceder al pago' }} 
+                </button>
             </div>
         </div>
         <div></div>
