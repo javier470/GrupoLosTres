@@ -251,29 +251,59 @@
                                     <div class="mt-6 mb-7 inset-0 flex items-center" aria-hidden="true">
                                         <div class="w-full border-t border-gray-300"></div>
                                     </div>
-
+                                    
+                                    @if($method == 'credito')
                                     <section>
                                         <div class="mb-5">
                                             <div class="flex flex-col mb-5">
                                                 <label for="nombreTarjeta" class="text-sm font-semibold">Nombre en la tarjeta</label>
-                                                <input autocomplete="off" id="nombreTarjeta" type="text" placeholder="Nombre en la tarjeta" class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
+                                                <input autocomplete="off" id="nombreTarjeta" type="text" placeholder="Nombre en la tarjeta" required class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
                                             </div>
                                             <div class="flex flex-col">
                                                 <label for="noTarjeta" class="text-sm font-semibold">Número de tarjeta</label>
-                                                <input autocomplete="off" id="noTarjeta" type="text" placeholder="0000 0000 0000 0000" class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
+                                                <input autocomplete="off" id="noTarjeta" type="text" placeholder="0000 0000 0000 0000" required class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
                                             </div>
                                         </div>
                                         <div class="grid grid-cols-2 gap-7">
                                             <div class="flex flex-col">
                                                 <label for="expirationDate" class="text-sm font-semibold">Expiración</label>
-                                                <input autocomplete="off" id="expirationDate" type="text" placeholder="--/--" class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
+                                                <input autocomplete="off" id="expirationDate" type="text" placeholder="--/--" required class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
                                             </div>
                                             <div class="flex flex-col">
                                                 <label for="cvv" class="text-sm font-semibold">CVV</label>
-                                                <input autocomplete="off" id="cvv" type="text" placeholder="***" class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
+                                                <input autocomplete="off" id="cvv" type="text" placeholder="***"  required class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
                                             </div>
                                         </div>
                                     </section>
+                                    @endif
+
+                                    @if($method == 'banco')
+                                    <section>
+                                        <div class="text-sm mb-5">
+                                            <p class="mb-2">Tienes 24 horas para realizar tu pago y subir comprobante para que podamos hacer la validación</p>
+                                            <p class="font-bold">Cuentas bancarias de Grupo Los Tres:</p>
+                                            <div class="flex gap-2">
+                                                <p class="font-bold">Banco Industrial:</p>
+                                                <p>111111</p>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <p class="font-bold">G&T:</p>
+                                                <p>111111</p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-5">
+                                            <div class="flex flex-col mb-5">
+                                                <label for="imgComprobante" class="text-sm font-semibold">Imagen de comprobante</label>
+                                                <input autocomplete="off" id="imgComprobante" type="file" required
+                                                class="cursor-pointer file:cusor-pointer file:mr-4 file:rounded-lg file:border-0 file:bg-[#1d89c4] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-[#1d89c4] dark:file:bg-[#1d89c4] dark:file:text-[#1d89c4] dark:hover:file:bg-violet-500" />
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <label for="noComprobante" class="text-sm font-semibold">No. de comprobante</label>
+                                                <input autocomplete="off" id="noComprobante" type="text" required placeholder="No. comprobante" class="bg-white border border-[#e1e6f0] rounded-lg p-2" />
+                                            </div>
+                                        </div>
+                                    </section>
+                                    @endif
 
                                     {{-- Divisor --}}
                                     <div class="my-7 inset-0 flex items-center" aria-hidden="true">
