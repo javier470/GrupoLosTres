@@ -409,71 +409,91 @@
     </div>
     @endif
     @if($vista === 'historial')
-    <section class="mt-20 mb-30 mx-50 lg:mx-50 min-h-[calc(75vh-200px)]"> {{-- Ajusta 200px según el alto de tu header+footer --}}
+    <section class="mt-20 mb-30 mx-4 sm:mx-10 lg:mx-20 xl:mx-32 2xl:mx-50 min-h-[calc(75vh-200px)]">
         @foreach($listaProcesos as $or)
-        <div class="bg-[#f8f9fb] border-[#e1e8ef] border-1 rounded-sm overflow-hidden">
-            <button onclick="toggleAccordionHistory({{ $loop->index }})" class="w-full flex justify-between items-center text-slate-800 cursor-pointer py-8 ps-5 pe-5">
-                <div class="flex justify-between items-center w-full me-10 h-16">
-                    <div class="flex items-center font-bold text-xl">
+        <div class="bg-[#f8f9fb] border border-[#e1e8ef] rounded-md overflow-hidden shadow-sm">
+            <button onclick="toggleAccordionHistory({{ $loop->index }})"
+                    class="w-full flex justify-between items-center text-slate-800 cursor-pointer py-6 px-5">
+                <div class="flex justify-between items-center w-full gap-4">
+                    <div class="flex items-center font-semibold text-lg sm:text-xl">
                         <p class="text-[#1e89c5]">Orden:&nbsp;</p>
                         <p class="text-[#294666]">{{ $or['orden'] }}</p>
                     </div>
-                    <div class="rounded-3xl bg-[#78c0e8] py-2 px-4 border border-transparent text-xs text-white transition-all">
+                    <div class="rounded-full bg-[#78c0e8] py-2 px-4 text-xs sm:text-sm text-white">
                         {{ $or['estado'] }}
                     </div>
                 </div>
-                <span id="iconHistory-{{ $loop->index }}" class="text-slate-800 transition-transform duration-300">
+                <span id="iconHistory-{{ $loop->index }}" class="text-slate-800 transition-transform duration-300 ml-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" />
                     </svg>
                 </span>
             </button>
-            <div id="contentHistory-{{ $loop->index }}" class="bg-white max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="grid border-[#d5d5d5] border-1 p-7 gap-6 lg:grid-cols-[0.8fr_1.5fr_1fr] md:grid-cols-1">
+
+            <div id="contentHistory-{{ $loop->index }}"
+                class="bg-white max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="grid gap-6 p-6 border-t border-[#d5d5d5] 
+                            lg:grid-cols-3 md:grid-cols-1 text-sm sm:text-base">
+                    
                     <div class="flex flex-col lg:flex-row">
-                        <div class="flex-1">
-                            <p class="font-bold text-[#1d89c4] mb-5">Datos de la Orden</p>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                        <div class="flex-1 max-w-70">
+                            <p class="font-bold text-[#1d89c4] mb-4">Datos de la Orden</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-[55%_40%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">No. de Orden:&nbsp;</p>
                                 <p>{{ $orden }}</p>
                             </div>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                            <div class="grid grid-cols-1 lg:grid-cols-[55%_40%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">No. de Placa:&nbsp;</p>
                                 <p>{{ $placa }}</p>
                             </div>
                         </div>
-                        <div class="inline-block h-[250px] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10 ms-3 me-3"></div>
+                        <div class="hidden lg:block h-[250px] w-px bg-neutral-200 mx-4"></div>
                     </div>
 
-                    <div>
-                        <p class="font-bold text-[#1d89c4] mb-5">Datos del Cliente</p>
-                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">Nombre:</p><p>{{ $nombreCliente }}</p></div>
-                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">NIT:</p><p>{{ $nitCliente }}</p></div>
-                        <div class="grid grid-cols-[35%_65%] mb-3"><p class="font-bold text-[#575757]">Dirección:</p><p>{{ $direccionCliente }}</p></div>
+                   <div>
+                        <p class="font-bold text-[#1d89c4] mb-4">Datos del Cliente</p>
+
+                        <div class="grid lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] d mb-3">
+                            <p class="font-bold text-[#575757] md:w-1/3">Nombre:&nbsp;</p>
+                            <p class="md:w-2/3">{{ $nombreCliente }}</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] d mb-3">
+                            <p class="font-bold text-[#575757] md:w-1/3">NIT:&nbsp;</p>
+                            <p class="md:w-2/3">{{ $nitCliente }}</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] d mb-3">
+                            <p class="font-bold text-[#575757] md:w-1/3">Dirección:&nbsp;</p>
+                            <p class="md:w-2/3">{{ $direccionCliente }}</p>
+                        </div>
                     </div>
 
                     <div class="flex flex-col lg:flex-row">
-                        <div class="inline-block h-[250px] w-0.5 self-stretch bg-neutral-100 dark:bg-white/10 ms-3 me-10"></div>
+                        <div class="hidden lg:block h-[250px] w-px bg-neutral-200 mx-4"></div>
                         <div class="flex-1">
-                            <p class="font-bold text-[#1d89c4] mb-5">Datos del Vehículo</p>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                            <p class="font-bold text-[#1d89c4] mb-4">Datos del Vehículo</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">Tipo:&nbsp;</p>
                                 <p>{{ $tipoVehiculo }}</p>
                             </div>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                            <div class="grid grid-cols-1 lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">Línea:&nbsp;</p>
                                 <p>{{ $lineaVehiculo }}</p>
                             </div>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                            <div class="grid grid-cols-1 lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">Marca:&nbsp;</p>
                                 <p>{{ $marcaVehiculo }}</p>
                             </div>
-                            <div class="grid mb-3 md:grid-cols-[auto_1fr] grid-cols-1 break-words">
+                            <div class="grid grid-cols-1 lg:grid-cols-[35%_65%] md:grid-cols-[auto_1fr] mb-3">
                                 <p class="font-bold text-[#575757]">Color:&nbsp;</p>
                                 <p>{{ $colorVehiculo }}</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
